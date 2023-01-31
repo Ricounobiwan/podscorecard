@@ -6,16 +6,6 @@ import { Team } from './Team'
 
 import { PerformanceCriterion, Criterion } from './PerformanceCriterion'
 
-let team1 = Team.wasFormed('HCP Team')
-team1.preparedNewScorecard('2023-01')
-
-let team2 = Team.wasFormed('One View')
-team2.preparedNewScorecard('2023-01')
-
-console.log(team1, team2)
-
-let teams: Team[] = [team1, team2]
-
 let inMemoryMetrics: Criterion[] = [
   {
     id: 1,
@@ -37,25 +27,48 @@ let inMemoryMetrics: Criterion[] = [
   },
 ]
 
-let scorecard1: Scorecard = new Scorecard('HCP team', '2023-01')
-console.log('Scorecard', scorecard1)
+let team1 = Team.wasFormed('HCP Team')
+let team1Scorecard = team1.preparedNewScorecard('2023-01')
+team1Scorecard.newPerformanceCriterionDefined(
+  inMemoryMetrics[0].id,
+  inMemoryMetrics[0].name,
+  inMemoryMetrics[0].description,
+  inMemoryMetrics[0].value
+)
+
+let team2 = Team.wasFormed('One View')
+let team2Scorecard = team2.preparedNewScorecard('2023-01')
+team2Scorecard.newPerformanceCriterionDefined(
+  inMemoryMetrics[0].id,
+  inMemoryMetrics[0].name,
+  inMemoryMetrics[0].description,
+  inMemoryMetrics[0].value
+)
+
+let teams: Team[] = [team1, team2]
+
+console.log('teams', teams)
+console.log('team1Scorecard', team1Scorecard)
 
 function App() {
   return (
     <div className="App">
-      <h1>{scorecard1.name}</h1>
-      <h2>{scorecard1.month}</h2>
-      {inMemoryMetrics.map((criterion) => {
+      {teams.map((item) => {
         return (
-          <div key={criterion.id}>
+          <div key={item.name}>
+            <h1>{item.name}</h1>
+            <h2>{item.scorecards[0].month}</h2>
+            {/* <h2>{team1.month}</h2> */}
             <a
               href="https://www.google.fr"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {criterion.id} - {criterion.name}
-            </a>{' '}
-            - {criterion.description}
+              {item.scorecards[0].metrics[0].id}-
+              {item.scorecards[0].metrics[0].name}-
+              {item.scorecards[0].metrics[0].description}-
+              {item.scorecards[0].metrics[0].value}
+            </a>
           </div>
         )
       })}

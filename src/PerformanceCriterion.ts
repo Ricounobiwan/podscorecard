@@ -30,9 +30,4 @@ export class PerformanceCriterion implements Criterion, CriterionExtended {
   getCriterionName(): string {
     return this.name
   }
-
-  getCriterionInfo(): Criterion {
-    return this
-    // return { id: this.id, name: this.name, description: this.description };
-  }
 }
