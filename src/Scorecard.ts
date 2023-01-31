@@ -1,22 +1,39 @@
-import { PerformanceCriterion } from './PerformanceCriterion'
+import { PerformanceCriterion } from "./PerformanceCriterion";
 
 export class Scorecard {
-  month: string
-  metrics: PerformanceCriterion[]
+  month: string;
+  metrics: PerformanceCriterion[];
 
   constructor(month: string) {
-    this.month = month
-    this.metrics = []
+    this.month = month;
+    this.metrics = [];
   }
 
   newPerformanceCriterionDefined(
     id: number,
     name: string,
     description: string,
-    value: number
+    value: number,
+    weight: number
   ): PerformanceCriterion {
-    let criterion = new PerformanceCriterion(id, name, description, value)
-    this.metrics.push(criterion)
-    return criterion
+    let criterion = new PerformanceCriterion(
+      id,
+      name,
+      description,
+      value,
+      weight
+    );
+    this.metrics.push(criterion);
+    return criterion;
+  }
+
+  computePerformanceScore() {
+    let score = this.metrics
+      .map((criterion) => criterion.value * criterion.weight)
+      .reduce((totalScore, newValue) => totalScore + newValue);
+    let totalWeight = this.metrics
+      .map((criterion) => criterion.weight)
+      .reduce((totWeight, newWeight) => totWeight + newWeight);
+    return score / totalWeight;
   }
 }
