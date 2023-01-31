@@ -1,0 +1,41 @@
+[
+    {
+      "Team": "HCP Portal",
+      "Scorecards": [
+        {
+          "Month": "Jan",
+          "Metrics": [
+            { "criterion": "Bugs", "value": 5 },
+            { "criterion": "CI/CD", "value": 10 }
+          ]
+        },
+        {
+          "Month": "Fev",
+          "Metrics": [
+            { "criterion": "Bugs", "value": 3 },
+            { "criterion": "CI/CD", "value": 8 }
+          ]
+        }
+      ]
+    },
+    {
+      "Team": "One View",
+      "Scorecards": [
+        {
+          "Month": "Jan",
+          "Metrics": [
+            { "criterion": "Bugs", "value": 2 },
+            { "criterion": "CI/CD", "value": 7 }
+          ]
+        },
+        {
+          "Month": "Fev",
+          "Metrics": [
+            { "criterion": "Bugs", "value": 0 },
+            { "criterion": "CI/CD", "value": 2 }
+          ]
+        }
+      ]
+    }
+  ]
+  

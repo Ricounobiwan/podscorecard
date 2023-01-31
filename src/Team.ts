@@ -1,20 +1,22 @@
+import { Scorecard } from './Scorecard'
+
 export class Team {
   name: string
-  scoreboards: Array<Scoreboard>
+  scorecards: Scorecard[]
+
+  constructor(teamName: string) {
+    this.name = teamName
+    this.scorecards = []
+  }
 
   static wasFormed(name: string): Team {
     let team = new Team(name)
     return team
   }
 
-  public preparedNewScoreboard(name: string, period): Scoreboard {
-    let scoreboard = new Scoreboard(name)
-    this.scoreboards.push(scoreboard)
-    return scoreboard
-  }
-
-  protected constructor(name: string) {
-    this.name = name
-    this.scoreboards = []
+  public preparedNewScorecard(month: string): Scorecard {
+    let scorecard = new Scorecard(month)
+    this.scorecards.push(scorecard)
+    return scorecard
   }
 }
